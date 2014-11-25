@@ -342,4 +342,14 @@ public class HibernateGenericDao implements GenericDao {
 		throw new IllegalArgumentException("Restriction not defined");
 	}
 
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+
+
 }
