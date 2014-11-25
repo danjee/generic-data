@@ -47,8 +47,7 @@ public class HibernateGenericDao implements GenericDao {
 	}
 
 	public <T> T getUnique(Class<T> clazz, QueryParameter qp, T filter) {
-		final T o = (T) getCriteria(clazz, qp, filter, false).uniqueResult();
-		return o;
+		return (T) getCriteria(clazz, qp, filter, false).uniqueResult();
 	}
 
 	public <T> Collection<T> getList(Class<T> clazz) {
@@ -341,5 +340,15 @@ public class HibernateGenericDao implements GenericDao {
 		}
 		throw new IllegalArgumentException("Restriction not defined");
 	}
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+
 
 }

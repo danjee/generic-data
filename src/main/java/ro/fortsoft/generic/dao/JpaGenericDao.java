@@ -77,6 +77,11 @@ public class JpaGenericDao implements GenericDao {
 		return 0;
 	}
 
+	private <T> String createQuery(QueryParameter qp, T filter){
+		return null;
+	}
+
+
 	public <T> T save(T object) {
 		entityManager.persist(object);
 		return object;
@@ -102,5 +107,14 @@ public class JpaGenericDao implements GenericDao {
 	public <T> void evict(T obj) {
 		entityManager.detach(obj);
 	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
 
 }

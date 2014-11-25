@@ -74,7 +74,7 @@ public class QueryParameter implements Serializable {
 	private int queryType = QUERY_TYPE_NONE;
 
 	private final List<String> defaultExcludedProperties = Arrays.asList("createdBy", "creationDate", "lastUpdatedBy",
-			"lastUpdateDate", "startDate", "endDate", "deleted", "active");
+			"lastUpdateDate", "deleted", "active");
 
 	private final List<String> excludedProperties;
 
@@ -90,9 +90,7 @@ public class QueryParameter implements Serializable {
 
 	private final List<ValueRestriction> restrictions;
 
-	private boolean withPersistentRestrictions = true;
-
-	private boolean withStorableRestrictions = true;
+	private final boolean withPersistentRestrictions = true;
 
 	private boolean withDistinctProjection = true;
 
@@ -276,24 +274,6 @@ public class QueryParameter implements Serializable {
 			excludedProperties.addAll(defaultExcludedProperties);
 		}
 		excludedProperties.addAll(excludeProperties);
-		return this;
-	}
-
-	public boolean isWithStorableRestrictions() {
-		return withStorableRestrictions;
-	}
-
-	public QueryParameter setWithStorableRestrictions(final boolean withStorableRestrictions) {
-		this.withStorableRestrictions = withStorableRestrictions;
-		return this;
-	}
-
-	public boolean isWithPersistentRestrictions() {
-		return withPersistentRestrictions;
-	}
-
-	public QueryParameter setWithPersistentRestrictions(final boolean withPersistentRestrictions) {
-		this.withPersistentRestrictions = withPersistentRestrictions;
 		return this;
 	}
 
