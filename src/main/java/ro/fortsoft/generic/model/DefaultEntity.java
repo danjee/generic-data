@@ -39,8 +39,7 @@ public abstract class DefaultEntity extends DefaultPersistent implements Entity 
 
 	@Override
 	public String toString() {
-		return "Organization [name=" + name + ", description=" + description
+		return "DefaultEntity [name=" + name + ", description=" + description
 				+ "]";
 	}
-
 }
