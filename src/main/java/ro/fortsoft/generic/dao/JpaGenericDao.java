@@ -14,64 +14,69 @@ public class JpaGenericDao implements GenericDao {
 	@Autowired
 	private EntityManager entityManager;
 
+	@Override
 	public <T> T get(Class<T> clazz, Serializable id) {
 		return entityManager.find(clazz, id);
 	}
 
+	@Override
 	public <T> T getUnique(Class<T> clazz) {
 		return entityManager.createQuery("from " + clazz.getName(), clazz).getSingleResult();
 	}
 
+	@Override
 	public <T> T getUnique(Class<T> clazz, QueryParameter qp) {
-		// TODO Auto-generated method stub
-		return null;
+		return getUnique(clazz, qp, null);
 	}
 
+	@Override
 	public <T> T getUnique(Class<T> clazz, T filter) {
-		// TODO Auto-generated method stub
-		return null;
+		return getUnique(clazz, null, filter);
 	}
 
+	@Override
 	public <T> T getUnique(Class<T> clazz, QueryParameter qp, T filter) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public <T> Collection<T> getList(Class<T> clazz) {
-		// TODO Auto-generated method stub
-		return null;
+		return getList(clazz, null, null);
 	}
 
+	@Override
 	public <T> long getCount(Class<T> clazz) {
-		// TODO Auto-generated method stub
-		return 0;
+		return getCount(clazz, null, null);
 	}
 
+	@Override
 	public <T> Collection<T> getList(Class<T> clazz, QueryParameter qp) {
-		// TODO Auto-generated method stub
-		return null;
+		return getList(clazz, qp, null);
 	}
 
+	@Override
 	public <T> long getCount(Class<T> clazz, QueryParameter qp) {
-		// TODO Auto-generated method stub
-		return 0;
+		return getCount(clazz, qp, null);
 	}
 
+	@Override
 	public <T> Collection<T> getList(Class<T> clazz, T filter) {
-		// TODO Auto-generated method stub
-		return null;
+		return getList(clazz,null, filter);
 	}
 
+	@Override
 	public <T> long getCount(Class<T> clazz, T filter) {
-		// TODO Auto-generated method stub
-		return 0;
+		return getCount(clazz, null, filter);
 	}
 
+	@Override
 	public <T> Collection<T> getList(Class<T> clazz, QueryParameter qp, T filter) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public <T> long getCount(Class<T> clazz, QueryParameter qp, T filter) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -81,29 +86,34 @@ public class JpaGenericDao implements GenericDao {
 		return null;
 	}
 
-
+	@Override
 	public <T> T save(T object) {
 		entityManager.persist(object);
 		return object;
 	}
 
+	@Override
 	public <T> void update(T object) {
 		entityManager.merge(object);
 	}
 
+	@Override
 	public <T> void delete(T object) {
 		entityManager.remove(object);
 	}
 
+	@Override
 	public <T> void delete(Class<T> clazz, Serializable id) {
 		final T object = entityManager.find(clazz, id);
 		entityManager.remove(object);
 	}
 
+	@Override
 	public void flushSession() {
 		entityManager.flush();
 	}
 
+	@Override
 	public <T> void evict(T obj) {
 		entityManager.detach(obj);
 	}
@@ -115,6 +125,4 @@ public class JpaGenericDao implements GenericDao {
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
-
-
 }
