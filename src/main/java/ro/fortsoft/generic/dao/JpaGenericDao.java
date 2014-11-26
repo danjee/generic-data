@@ -72,18 +72,31 @@ public class JpaGenericDao implements GenericDao {
 
 	@Override
 	public <T> Collection<T> getList(Class<T> clazz, QueryParameter qp, T filter) {
-		// TODO Auto-generated method stub
-		return null;
+		final String jpql = createQuery(clazz, qp, filter, false);
+		return entityManager.createQuery(jpql, clazz).getResultList();
 	}
 
 	@Override
 	public <T> long getCount(Class<T> clazz, QueryParameter qp, T filter) {
-		// TODO Auto-generated method stub
-		return 0;
+		final String jpql = createQuery(clazz, qp, filter, true);
+		return entityManager.createQuery(jpql, Long.class).getSingleResult();
 	}
 
-	private <T> String createQuery(QueryParameter qp, T filter){
-		return null;
+
+	private <T> String createQuery(Class<T> clazz, QueryParameter qp, T filter, boolean count){
+		final StringBuilder jpql = new StringBuilder();
+		jpql.append("select ");
+		if (count){
+			jpql.append("count(");
+		}
+		jpql.append("x");
+		if (count){
+			jpql.append(")");
+		}
+		jpql.append(" from ");
+		jpql.append(clazz.getSimpleName());
+		jpql.append(" x ");
+		return jpql.toString();
 	}
 
 	@Override
