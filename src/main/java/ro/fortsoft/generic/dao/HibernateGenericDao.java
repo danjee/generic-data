@@ -16,17 +16,21 @@ import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import ro.fortsoft.generic.param.BetweenComparator;
 import ro.fortsoft.generic.param.QueryParameter;
 import ro.fortsoft.generic.param.Sorter;
 import ro.fortsoft.generic.param.ValueRestriction;
 
+@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 public class HibernateGenericDao implements GenericDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public <T> T get(Class<T> clazz, Serializable id) {
 		final Criteria criteria = getCriteria(clazz, null, null, false);
@@ -34,76 +38,94 @@ public class HibernateGenericDao implements GenericDao {
 		return (T) criteria.uniqueResult();
 	}
 
+	@Override
 	public <T> T getUnique(Class<T> clazz) {
 		return getUnique(clazz, null, null);
 	}
 
+	@Override
 	public <T> T getUnique(Class<T> clazz, QueryParameter qp) {
 		return getUnique(clazz, qp, null);
 	}
 
+	@Override
 	public <T> T getUnique(Class<T> clazz, T filter) {
 		return getUnique(clazz, null, filter);
 	}
 
+	@Override
 	public <T> T getUnique(Class<T> clazz, QueryParameter qp, T filter) {
 		return (T) getCriteria(clazz, qp, filter, false).uniqueResult();
 	}
 
+	@Override
 	public <T> Collection<T> getList(Class<T> clazz) {
 		return getList(clazz, null, null);
 	}
 
+	@Override
 	public <T> long getCount(Class<T> clazz) {
 		return getCount(clazz, null, null);
 	}
 
+	@Override
 	public <T> Collection<T> getList(Class<T> clazz, QueryParameter qp) {
 		return getList(clazz, qp, null);
 	}
 
+	@Override
 	public <T> long getCount(Class<T> clazz, QueryParameter qp) {
 		return getCount(clazz, qp, null);
 	}
 
+	@Override
 	public <T> Collection<T> getList(Class<T> clazz, T filter) {
 		return getList(clazz, null, filter);
 	}
 
+	@Override
 	public <T> long getCount(Class<T> clazz, T filter) {
 		return getCount(clazz, null, filter);
 	}
 
+	@Override
 	public <T> Collection<T> getList(Class<T> clazz, QueryParameter qp, T filter) {
 		return getCriteria(clazz, qp, filter, false).list();
 	}
 
+	@Override
 	public <T> long getCount(Class<T> clazz, QueryParameter qp, T filter) {
 		return ((Number) getCriteria(clazz, qp, filter, true).uniqueResult()).longValue();
 	}
 
+	@Override
 	public <T> T save(T object) {
 		final Serializable id = sessionFactory.getCurrentSession().save(object);
 		return (T) sessionFactory.getCurrentSession().get(object.getClass(), id);
 	}
 
+	@Override
 	public <T> void update(T object) {
 		sessionFactory.getCurrentSession().update(object);
 	}
 
+	@Override
 	public <T> void delete(T object) {
 		sessionFactory.getCurrentSession().delete(object);
 	}
 
+	@Override
 	public <T> void delete(Class<T> clazz, Serializable id) {
 		final Session session = sessionFactory.getCurrentSession();
 		sessionFactory.getCurrentSession().delete(session.get(clazz, id));
 	}
 
+	@Override
 	public void flushSession() {
 		sessionFactory.getCurrentSession().flush();
 	}
 
+	@Override
 	public <T> void evict(T obj) {
 		sessionFactory.getCurrentSession().evict(obj);
 	}

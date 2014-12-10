@@ -4,11 +4,16 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import ro.fortsoft.generic.param.QueryParameter;
+import ro.fortsoft.generic.param.ValueRestriction;
 
+@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 public class JpaGenericDao implements GenericDao {
 
 	@Autowired
@@ -21,7 +26,8 @@ public class JpaGenericDao implements GenericDao {
 
 	@Override
 	public <T> T getUnique(Class<T> clazz) {
-		return entityManager.createQuery("from " + clazz.getName(), clazz).getSingleResult();
+		return entityManager.createQuery("from " + clazz.getName(), clazz)
+				.getSingleResult();
 	}
 
 	@Override
@@ -34,10 +40,11 @@ public class JpaGenericDao implements GenericDao {
 		return getUnique(clazz, null, filter);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getUnique(Class<T> clazz, QueryParameter qp, T filter) {
-		// TODO Auto-generated method stub
-		return null;
+		final Query query = createQuery(clazz, qp, filter, false);
+		return (T) query.getSingleResult();
 	}
 
 	@Override
@@ -62,7 +69,7 @@ public class JpaGenericDao implements GenericDao {
 
 	@Override
 	public <T> Collection<T> getList(Class<T> clazz, T filter) {
-		return getList(clazz,null, filter);
+		return getList(clazz, null, filter);
 	}
 
 	@Override
@@ -70,33 +77,62 @@ public class JpaGenericDao implements GenericDao {
 		return getCount(clazz, null, filter);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> Collection<T> getList(Class<T> clazz, QueryParameter qp, T filter) {
-		final String jpql = createQuery(clazz, qp, filter, false);
-		return entityManager.createQuery(jpql, clazz).getResultList();
+		final Query query = createQuery(clazz, qp, filter, false);
+		return query.getResultList();
 	}
 
 	@Override
 	public <T> long getCount(Class<T> clazz, QueryParameter qp, T filter) {
-		final String jpql = createQuery(clazz, qp, filter, true);
-		return entityManager.createQuery(jpql, Long.class).getSingleResult();
+		final Query query = createQuery(clazz, qp, filter, true);
+		return (Long) query.getSingleResult();
 	}
 
-
-	private <T> String createQuery(Class<T> clazz, QueryParameter qp, T filter, boolean count){
+	private <T> Query createQuery(Class<T> clazz, QueryParameter qp, T filter,
+			boolean count) {
 		final StringBuilder jpql = new StringBuilder();
 		jpql.append("select ");
-		if (count){
+		if (count) {
 			jpql.append("count(");
 		}
 		jpql.append("x");
-		if (count){
+		if (count) {
 			jpql.append(")");
 		}
 		jpql.append(" from ");
 		jpql.append(clazz.getSimpleName());
 		jpql.append(" x ");
-		return jpql.toString();
+		jpql.append(" where 1 = 1");
+		if (qp != null) {
+			for (final ValueRestriction restriction : qp.getRestrictions()) {
+				jpql.append(" and ").append(restriction.getField())
+				.append(getOperator(restriction.getComparator()))
+				.append(":").append(restriction.getField());
+			}
+		}
+		final Query query = entityManager.createQuery(jpql.toString(),
+				count ? Long.class : clazz);
+		if (qp != null) {
+			for (final ValueRestriction restriction : qp.getRestrictions()) {
+				query.setParameter(restriction.getField(),
+						restriction.getValue());
+			}
+		}
+		return query;
+	}
+
+	private String getOperator(String comparator) {
+		switch (comparator) {
+		case QueryParameter.EQ: return "=";
+		case QueryParameter.NE: return "!=";
+		case QueryParameter.GT: return ">";
+		case QueryParameter.LT: return "<";
+		case QueryParameter.LE: return "<=";
+		case QueryParameter.GE: return ">=";
+		}
+		return null;
 	}
 
 	@Override

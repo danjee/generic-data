@@ -90,8 +90,6 @@ public class QueryParameter implements Serializable {
 
 	private final List<ValueRestriction> restrictions;
 
-	private final boolean withPersistentRestrictions = true;
-
 	private boolean withDistinctProjection = true;
 
 	public static final int MATCH_MODE_EXACT = 1;
