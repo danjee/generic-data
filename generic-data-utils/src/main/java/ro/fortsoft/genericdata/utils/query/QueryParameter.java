@@ -112,11 +112,6 @@ public class QueryParameter implements Serializable {
 
 	private boolean distinctRootEntity;
 
-	/**
-	 * When using this is invoked method activateAll() from your model class if
-	 * exists, otherwise initialize every property that has FetchType.LAZY
-	 * annotation
-	 */
 	public static final String INITIALIZE_ALL = "INITIALIZE_ALL";
 	private final List<String> lazyFieldsToInitialize;
 

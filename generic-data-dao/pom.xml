@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>ro.fortsoft</groupId>
 		<artifactId>generic-data</artifactId>
-		<version>1.4.0-SNAPSHOT</version>
+		<version>1.5.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>generic-data-dao</artifactId>
 	<name>generic-data-dao</name>
@@ -12,7 +12,7 @@
 		<dependency>
 			<groupId>ro.fortsoft</groupId>
 			<artifactId>generic-data-utils</artifactId>
-			<version>1.4.0-SNAPSHOT</version>
+			<version>1.5.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

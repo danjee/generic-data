@@ -24,7 +24,6 @@ public abstract class AbstractAuditInterceptor extends EmptyInterceptor implemen
 	private static final String LAST_UPDATE_DATE = "lastUpdateDate";
 	private static final String DELETED = "deleted";
 
-	// update
 	@Override
 	public boolean onFlushDirty(final Object entity, final Serializable id, final Object[] state,
 			final Object[] previousState, final String[] propertyNames, final Type[] types) {
@@ -46,7 +45,6 @@ public abstract class AbstractAuditInterceptor extends EmptyInterceptor implemen
 		return modified;
 	}
 
-	// save
 	@Override
 	public boolean onSave(final Object entity, final Serializable id, final Object[] state,
 			final String[] propertyNames, final Type[] types) {

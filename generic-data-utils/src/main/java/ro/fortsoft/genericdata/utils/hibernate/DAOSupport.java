@@ -1,7 +1,6 @@
 package ro.fortsoft.genericdata.utils.hibernate;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import javax.sql.DataSource;
 

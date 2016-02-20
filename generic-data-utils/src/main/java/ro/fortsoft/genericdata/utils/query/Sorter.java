@@ -37,20 +37,10 @@ public class Sorter implements Serializable {
 				+ (ignoreCase ? " ignoreCase" : "");
 	}
 
-	/**
-	 * ignoreCase is set by default on true
-	 * 
-	 * @return
-	 */
 	public boolean isIgnoreCase() {
 		return ignoreCase;
 	}
 
-	/**
-	 * ignoreCase is set by default on true
-	 * 
-	 * @return
-	 */
 	public void setIgnoreCase(final boolean ignoreCase) {
 		this.ignoreCase = ignoreCase;
 	}
