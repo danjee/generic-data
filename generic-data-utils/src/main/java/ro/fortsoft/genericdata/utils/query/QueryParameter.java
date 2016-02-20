@@ -407,11 +407,6 @@ public class QueryParameter implements Serializable {
 		return this;
 	}
 
-	/**
-	 * When using INITIALIZE_ALL, is invoked method activateAll() from your
-	 * model class if exists, otherwise initialize every property that has
-	 * FetchType.LAZY annotation
-	 */
 	public QueryParameter addLazyFieldToInitialize(final String property) {
 		lazyFieldsToInitialize.add(property);
 		return this;
