@@ -1,18 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>ro.sok.niinoo</groupId>
-    <artifactId>niinoo-generic</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>ro.fortsoft</groupId>
+    <artifactId>generic-data</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>niinoo-generic-service</artifactId>
-  <name>niinoo-generic-service</name>
-  <description>Generic service for Niinoo application</description>
+  <artifactId>generic-data-service</artifactId>
+  <name>generic-data-service</name>
+  <description>Service for generic-data</description>
   <dependencies>
   	<dependency>
-  		<groupId>ro.sok.niinoo</groupId>
-  		<artifactId>niinoo-generic-dao</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
+  		<groupId>ro.fortsoft</groupId>
+  		<artifactId>generic-data-dao</artifactId>
+  		<version>1.0.0-SNAPSHOT</version>
   	</dependency>
   </dependencies>
 </project>
