@@ -18,7 +18,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import ro.fortsoft.genericdata.utils.exception.HibernateMappingException;
-import ro.fortsoft.genericdata.utils.exception.NiinooException;
+import ro.fortsoft.genericdata.utils.exception.AppException;
 import ro.fortsoft.genericdata.utils.exception.RestrictionsUnknownException;
 import ro.fortsoft.genericdata.utils.hibernate.CriteriaUtil;
 import ro.fortsoft.genericdata.utils.hibernate.HibernateDAOSupport;
@@ -35,7 +35,7 @@ import ro.fortsoft.genericdata.utils.query.ValueRestriction;
 public class GenericDAOImpl extends HibernateDAOSupport implements GenericDAO{
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> T get(final Class<T> clazz, final Serializable id) throws NiinooException {
+	public <T> T get(final Class<T> clazz, final Serializable id) throws AppException {
 		checkHibernateMapping(clazz);
 		final Criteria criteria = getSession().createCriteria(clazz);
 		if (Persistent.class.isAssignableFrom(clazz)) {
@@ -48,23 +48,23 @@ public class GenericDAOImpl extends HibernateDAOSupport implements GenericDAO{
 	}
 
 	@Override
-	public <T> T getUnique(final Class<T> clazz) throws NiinooException {
+	public <T> T getUnique(final Class<T> clazz) throws AppException {
 		return getUnique(clazz, null, null);
 	}
 
 	@Override
-	public <T> T getUnique(final Class<T> clazz, final QueryParameter qp) throws NiinooException {
+	public <T> T getUnique(final Class<T> clazz, final QueryParameter qp) throws AppException {
 		return getUnique(clazz, qp, null);
 	}
 
 	@Override
-	public <T> T getUnique(final Class<T> clazz, final T filter) throws NiinooException {
+	public <T> T getUnique(final Class<T> clazz, final T filter) throws AppException {
 		return getUnique(clazz, null, filter);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> T getUnique(final Class<T> clazz, final QueryParameter qp, final T filter) throws NiinooException {
+	public <T> T getUnique(final Class<T> clazz, final QueryParameter qp, final T filter) throws AppException {
 		final T o = (T) getCriteria(clazz, qp, filter, false).uniqueResult();
 		afterGet(o, qp);
 		return o;
@@ -166,23 +166,23 @@ public class GenericDAOImpl extends HibernateDAOSupport implements GenericDAO{
 	}
 
 	@Override
-	public <T> void deleteBulk(final Class<T> clazz) throws NiinooException {
+	public <T> void deleteBulk(final Class<T> clazz) throws AppException {
 		deleteBulk(clazz, null, null);
 	}
 
 	@Override
-	public <T> void deleteBulk(final Class<T> clazz, final QueryParameter qp) throws NiinooException {
+	public <T> void deleteBulk(final Class<T> clazz, final QueryParameter qp) throws AppException {
 		deleteBulk(clazz, qp, null);
 	}
 
 	@Override
-	public <T> void deleteBulk(final Class<T> clazz, final T filter) throws NiinooException {
+	public <T> void deleteBulk(final Class<T> clazz, final T filter) throws AppException {
 		deleteBulk(clazz, null, filter);
 	}
 
 	@Override
 	public <T> void deleteBulk(final Class<T> clazz, final QueryParameter qp, final T filter)
-			throws NiinooException {
+			throws AppException {
 		checkHibernateMapping(clazz);
 		for (final T obj : getList(clazz, qp, filter)) {
 			delete(obj);
@@ -190,7 +190,7 @@ public class GenericDAOImpl extends HibernateDAOSupport implements GenericDAO{
 	}
 
 	@Override
-	public <T> List<T> getList(final Class<T> clazz) throws NiinooException {
+	public <T> List<T> getList(final Class<T> clazz) throws AppException {
 		return getList(clazz, null, null);
 	}
 
@@ -200,7 +200,7 @@ public class GenericDAOImpl extends HibernateDAOSupport implements GenericDAO{
 	}
 
 	@Override
-	public <T> List<T> getList(final Class<T> clazz, final QueryParameter qp) throws NiinooException {
+	public <T> List<T> getList(final Class<T> clazz, final QueryParameter qp) throws AppException {
 		return getList(clazz, qp, null);
 	}
 
@@ -210,7 +210,7 @@ public class GenericDAOImpl extends HibernateDAOSupport implements GenericDAO{
 	}
 
 	@Override
-	public <T> List<T> getList(final Class<T> clazz, final T filter) throws NiinooException {
+	public <T> List<T> getList(final Class<T> clazz, final T filter) throws AppException {
 		return getList(clazz, null, filter);
 	}
 
@@ -222,7 +222,7 @@ public class GenericDAOImpl extends HibernateDAOSupport implements GenericDAO{
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> List<T> getList(final Class<T> clazz, final QueryParameter qp, final T filter)
-			throws NiinooException {
+			throws AppException {
 		final Criteria criteria = getCriteria(clazz, qp, filter, false);
 		if (qp != null) {
 			if (qp.isDistinctRootEntity()) {
@@ -697,7 +697,7 @@ public class GenericDAOImpl extends HibernateDAOSupport implements GenericDAO{
 
 	// FEATURE improve on this to get the cached one also
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private <T> void afterGet(final T o, final QueryParameter qp) throws NiinooException {
+	private <T> void afterGet(final T o, final QueryParameter qp) throws AppException {
 		if (o == null){
 			return;
 		}
@@ -707,7 +707,7 @@ public class GenericDAOImpl extends HibernateDAOSupport implements GenericDAO{
 				final Method met = clazz.getMethod("initialize", null);
 				met.invoke(o, null);
 			} catch (final Exception e) {
-				throw new NiinooException(e);
+				throw new AppException(e);
 			}
 		}
 		if (qp != null && !qp.getLazyFieldsToInitialize().isEmpty()) {
