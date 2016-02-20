@@ -140,7 +140,9 @@ public class GenericDAOImpl extends HibernateDAOSupport implements GenericDAO{
 			return;
 		}
 		checkHibernateMapping(clazz);
-		list.forEach(obj -> getSession().update(obj));
+		for (T obj : list){
+			getSession().update(obj);
+		}
 	}
 
 	@Override

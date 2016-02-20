@@ -8,10 +8,14 @@
 	<name>generic-data</name>
 	<description>Generic API for database access with Spring and Hibernate</description>
 	<properties>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.testTarget>1.8</maven.compiler.testTarget>
-		<maven.compiler.testSource>1.8</maven.compiler.testSource>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.testTarget>1.7</maven.compiler.testTarget>
+		<maven.compiler.testSource>1.7</maven.compiler.testSource>
+		<hibernate.version>5.0.7.Final</hibernate.version>
+		<hibernate.jpa.api.version>1.0.0.Final</hibernate.jpa.api.version>
+		<spring.version>4.2.4.RELEASE</spring.version>
+		<commons.lang3.version>3.4</commons.lang3.version>
 	</properties>
 	<modules>
 		<module>generic-data-dao</module>
