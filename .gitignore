@@ -1,1 +1,6 @@
 /target/
+/.settings/
+/.project
+/.classpath
+/.idea
+/.generic-data.iml
