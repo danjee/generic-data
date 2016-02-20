@@ -1,4 +1,4 @@
-package ro.sok.niinoo.generic.service;
+package ro.fortsoft.genericdata.service;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ro.sok.niinoo.generic.dao.GenericDAO;
-import ro.sok.niinoo.utils.exception.NiinooException;
-import ro.sok.niinoo.utils.query.Pair;
-import ro.sok.niinoo.utils.query.QueryParameter;
+import ro.fortsoft.genericdata.dao.GenericDAO;
+import ro.fortsoft.genericdata.utils.exception.NiinooException;
+import ro.fortsoft.genericdata.utils.query.Pair;
+import ro.fortsoft.genericdata.utils.query.QueryParameter;
 
 @Service("genericService")
 @Transactional

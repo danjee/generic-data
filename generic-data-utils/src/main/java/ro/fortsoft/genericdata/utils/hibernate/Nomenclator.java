@@ -1,4 +1,4 @@
-package ro.sok.niinoo.utils.hibernate;
+package ro.fortsoft.genericdata.utils.hibernate;
 
 /**
  * @author daniel.jipa May 3, 2012, 11:38:01 AM

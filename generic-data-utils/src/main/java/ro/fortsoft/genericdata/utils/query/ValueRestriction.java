@@ -1,4 +1,4 @@
-package ro.sok.niinoo.utils.query;
+package ro.fortsoft.genericdata.utils.query;
 
 import java.io.Serializable;
 import java.util.ArrayList;

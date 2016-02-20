@@ -1,4 +1,4 @@
-package ro.sok.niinoo.utils.hibernate;
+package ro.fortsoft.genericdata.utils.hibernate;
 
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;

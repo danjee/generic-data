@@ -1,11 +1,11 @@
-package ro.sok.niinoo.generic.dao;
+package ro.fortsoft.genericdata.dao;
 
 import java.io.Serializable;
 import java.util.List;
 
-import ro.sok.niinoo.utils.exception.NiinooException;
-import ro.sok.niinoo.utils.query.Pair;
-import ro.sok.niinoo.utils.query.QueryParameter;
+import ro.fortsoft.genericdata.utils.exception.NiinooException;
+import ro.fortsoft.genericdata.utils.query.Pair;
+import ro.fortsoft.genericdata.utils.query.QueryParameter;
 
 public interface GenericDAO {
 

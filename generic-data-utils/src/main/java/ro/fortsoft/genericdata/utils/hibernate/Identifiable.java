@@ -1,4 +1,4 @@
-package ro.sok.niinoo.utils.hibernate;
+package ro.fortsoft.genericdata.utils.hibernate;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package ro.sok.niinoo.generic.dao;
+package ro.fortsoft.genericdata.dao;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
@@ -17,19 +17,19 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import ro.sok.niinoo.utils.exception.HibernateMappingException;
-import ro.sok.niinoo.utils.exception.NiinooException;
-import ro.sok.niinoo.utils.exception.RestrictionsUnknownException;
-import ro.sok.niinoo.utils.hibernate.CriteriaUtil;
-import ro.sok.niinoo.utils.hibernate.HibernateDAOSupport;
-import ro.sok.niinoo.utils.hibernate.Initializable;
-import ro.sok.niinoo.utils.hibernate.Persistent;
-import ro.sok.niinoo.utils.hibernate.ReflectionUtil;
-import ro.sok.niinoo.utils.query.BetweenComparator;
-import ro.sok.niinoo.utils.query.Pair;
-import ro.sok.niinoo.utils.query.QueryParameter;
-import ro.sok.niinoo.utils.query.Sorter;
-import ro.sok.niinoo.utils.query.ValueRestriction;
+import ro.fortsoft.genericdata.utils.exception.HibernateMappingException;
+import ro.fortsoft.genericdata.utils.exception.NiinooException;
+import ro.fortsoft.genericdata.utils.exception.RestrictionsUnknownException;
+import ro.fortsoft.genericdata.utils.hibernate.CriteriaUtil;
+import ro.fortsoft.genericdata.utils.hibernate.HibernateDAOSupport;
+import ro.fortsoft.genericdata.utils.hibernate.Initializable;
+import ro.fortsoft.genericdata.utils.hibernate.Persistent;
+import ro.fortsoft.genericdata.utils.hibernate.ReflectionUtil;
+import ro.fortsoft.genericdata.utils.query.BetweenComparator;
+import ro.fortsoft.genericdata.utils.query.Pair;
+import ro.fortsoft.genericdata.utils.query.QueryParameter;
+import ro.fortsoft.genericdata.utils.query.Sorter;
+import ro.fortsoft.genericdata.utils.query.ValueRestriction;
 
 @Repository
 public class GenericDAOImpl extends HibernateDAOSupport implements GenericDAO{

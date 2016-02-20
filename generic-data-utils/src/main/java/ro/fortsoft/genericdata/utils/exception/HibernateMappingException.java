@@ -1,4 +1,4 @@
-package ro.sok.niinoo.utils.exception;
+package ro.fortsoft.genericdata.utils.exception;
 
 public class HibernateMappingException extends RuntimeException {
 
