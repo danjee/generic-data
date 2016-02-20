@@ -1,4 +1,4 @@
-generic-dao
+generic-data
 ===========
 
-Generic JPA and Hibernate DAO methods
+Generic Hibernate and Spring service and DAO methods
