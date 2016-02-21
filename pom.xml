@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ro.fortsoft</groupId>
 	<artifactId>generic-data</artifactId>
@@ -16,34 +17,35 @@
 		<hibernate.jpa.api.version>1.0.0.Final</hibernate.jpa.api.version>
 		<spring.version>4.2.4.RELEASE</spring.version>
 		<commons.lang3.version>3.4</commons.lang3.version>
+		<maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
 	</properties>
-	
+
 	<licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
-    <scm>
-        <connection>scm:git:https://github.com/danjee/generic-data.git</connection>
-        <developerConnection>scm:git:https://github.com/danjee/generic-data.git</developerConnection>
-        <url>git@github.com/danjee/generic-data.git</url>
-        <tag>HEAD</tag>
-    </scm>
+	<scm>
+		<connection>scm:git:https://github.com/danjee/generic-data.git</connection>
+		<developerConnection>scm:git:https://github.com/danjee/generic-data.git</developerConnection>
+		<url>git@github.com/danjee/generic-data.git</url>
+		<tag>HEAD</tag>
+	</scm>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-        </repository>
-    </distributionManagement>
-	
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>sonatype-nexus-staging</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+	</distributionManagement>
+
 	<modules>
 		<module>generic-data-dao</module>
 		<module>generic-data-service</module>
@@ -79,19 +81,84 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.2</version>
+				<configuration>
+					<goals>deploy</goals>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${maven-javadoc-plugin.version}</version>
+				<configuration>
+					<skip>true</skip>
+					<quiet>true</quiet>
+					<links>
+						<link>http://docs.oracle.com/javase/6/docs/api/</link>
+						<link>http://junit-team.github.io/junit/javadoc/latest/</link>
+						<link>http://www.slf4j.org/apidocs/</link>
+					</links>
+					<additionalJOptions>
+						<additionalJOption>-J-Xmx32m</additionalJOption>
+					</additionalJOptions>
+					<doclet>ch.raffael.doclets.pegdown.PegdownDoclet</doclet>
+					<docletArtifact>
+						<groupId>ch.raffael.pegdown-doclet</groupId>
+						<artifactId>pegdown-doclet</artifactId>
+						<version>1.1</version>
+					</docletArtifact>
+					<useStandardDocletOptions>true</useStandardDocletOptions>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-jar</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
-    <developers>
-        <developer>
-            <id>danjee</id>
-            <name>Daniel Jipa</name>
-            <email>daniel.jipa@fortsoft.ro</email>
-            <organization>fortsoft.ro</organization>
-            <roles>
-                <role>Owner</role>
-                <role>Committer</role>
-            </roles>
-        </developer>
-    </developers>
+	<developers>
+		<developer>
+			<id>danjee</id>
+			<name>Daniel Jipa</name>
+			<email>daniel.jipa@fortsoft.ro</email>
+			<organization>fortsoft.ro</organization>
+			<roles>
+				<role>Owner</role>
+				<role>Committer</role>
+			</roles>
+		</developer>
+	</developers>
 </project>
