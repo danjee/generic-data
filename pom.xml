@@ -3,9 +3,10 @@
 	<groupId>ro.fortsoft</groupId>
 	<artifactId>generic-data</artifactId>
 	<packaging>pom</packaging>
-	<version>1.6.0-SNAPSHOT</version>
+	<version>1.6.0</version>
 	<name>generic-data</name>
 	<description>Generic API for database access with Spring and Hibernate</description>
+	<url>https://github.com/danjee/generic-data</url>
 	<properties>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
@@ -80,4 +81,17 @@
 			</plugin>
 		</plugins>
 	</build>
+
+    <developers>
+        <developer>
+            <id>danjee</id>
+            <name>Daniel Jipa</name>
+            <email>daniel.jipa@fortsoft.ro</email>
+            <organization>fortsoft.ro</organization>
+            <roles>
+                <role>Owner</role>
+                <role>Committer</role>
+            </roles>
+        </developer>
+    </developers>
 </project>
