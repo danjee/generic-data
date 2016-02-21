@@ -128,6 +128,12 @@ public class QueryParameter implements Serializable {
 		return new QueryParameter();
 	}
 
+
+    /**
+     * Constructor.
+     *
+     * @param field the sorting field
+     */
 	public QueryParameter(final String field) {
 		this(field, true);
 	}
