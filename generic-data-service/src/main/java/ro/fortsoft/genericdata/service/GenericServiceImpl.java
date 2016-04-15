@@ -18,6 +18,10 @@ public class GenericServiceImpl implements GenericService {
 
 	@Autowired
 	private GenericDAO genericDAO;
+	
+	public void setGenericDAO(GenericDAO genericDAO) {
+		this.genericDAO = genericDAO;
+	}
 
 	@Override
 	public <T> List<T> addList(final List<T> list) throws AppException {
