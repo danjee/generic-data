@@ -12,6 +12,8 @@ public class QueryParameter implements Serializable {
 	private static final long serialVersionUID = -8611407316504601939L;
 
 	public static final String EQ = "eq";
+	
+	public static final String IEQ = "ieq";
 
 	public static final String NE = "ne";
 

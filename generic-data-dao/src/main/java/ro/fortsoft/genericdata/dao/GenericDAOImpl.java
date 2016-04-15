@@ -526,6 +526,8 @@ public class GenericDAOImpl extends HibernateDAOSupport implements GenericDAO{
 		}
 		if (restriction.getComparator().equals(QueryParameter.EQ)) {
 			return Restrictions.eq(restriction.getField(), restriction.getValue());
+		} else if (restriction.getComparator().equals(QueryParameter.IEQ)){
+			return Restrictions.eq(restriction.getField(), restriction.getValue()).ignoreCase();
 		} else if (restriction.getComparator().equals(QueryParameter.NE)) {
 			return Restrictions.ne(restriction.getField(), restriction.getValue());
 		} else if (restriction.getComparator().equals(QueryParameter.GE)) {
