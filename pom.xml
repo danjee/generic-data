@@ -18,6 +18,8 @@
 		<spring.version>4.2.4.RELEASE</spring.version>
 		<commons.lang3.version>3.4</commons.lang3.version>
 		<maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
+		<cobertura.version>2.7</cobertura.version>
+        	<coveralls.version>3.1.0</coveralls.version>
 	</properties>
 
 	<licenses>
@@ -125,8 +127,46 @@
 				<version>1.9.4</version>
 			</plugin>
 		</plugins>
-	</build>
-
+		</build>
+		<profiles>
+        		<profile>
+            			<id>jdk8-build</id>
+            			<activation>
+                			<jdk>[1.8,)</jdk>
+            			</activation>
+            			<properties>
+                			<additionalparam>-Xdoclint:none</additionalparam>
+            			</properties>
+        		</profile>
+        		<profile>
+            			<id>travis</id>
+            			<activation>
+                			<property>
+                    				<name>env.TRAVIS</name>
+                    				<value>true</value>
+                			</property>
+            			</activation>
+            			<build>
+                			<plugins>
+                    				<plugin>
+                        				<groupId>org.codehaus.mojo</groupId>
+                        				<artifactId>cobertura-maven-plugin</artifactId>
+                        				<version>${cobertura.version}</version>
+                        				<configuration>
+                        					<formats>
+                              						<format>xml</format>
+                        					 </formats>
+                   				</configuration>
+                	     		 </plugin>
+                				<plugin>
+                       					<groupId>org.eluder.coveralls</groupId>
+                       					<artifactId>coveralls-maven-plugin</artifactId>
+                      					<version>${coveralls.version}</version>
+                				</plugin>
+                			</plugins>
+        			</build>
+        		</profile>
+    		</profiles>
 	<developers>
 		<developer>
 			<id>danjee</id>
