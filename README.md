@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/danjee/generic-data.png?label=ready&title=Ready)](https://waffle.io/danjee/generic-data)
 generic-data
 ===========
 
