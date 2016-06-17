@@ -557,8 +557,8 @@ public class GenericDAOImpl extends HibernateDAOSupport implements GenericDAO{
 			}
 		} else if (restriction.getComparator().equals(QueryParameter.IN)) {
 			List<Serializable> arguments = null;
-			if (restriction.getValue() instanceof ArrayList) {
-				arguments = (ArrayList) restriction.getValue();
+			if ( List.class.isAssignableFrom(restriction.getValue().getClass()) ){
+				arguments = (List) restriction.getValue();
 			} else {
 				throw new IllegalArgumentException("Argument IN must be of type ArrayList");
 			}
@@ -584,8 +584,8 @@ public class GenericDAOImpl extends HibernateDAOSupport implements GenericDAO{
 			}
 		} else if (restriction.getComparator().equals(QueryParameter.NOT_IN)) {
 			List<Serializable> arguments = null;
-			if (restriction.getValue() instanceof ArrayList) {
-				arguments = (ArrayList) restriction.getValue();
+			if ( List.class.isAssignableFrom(restriction.getValue().getClass()) ){
+				arguments = (List) restriction.getValue();
 			} else {
 				throw new IllegalArgumentException("Argument IN must be of type ArrayList");
 			}
