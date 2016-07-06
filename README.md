@@ -21,7 +21,7 @@ You can use from Maven central
 ```xml
 <dependency>
     <groupId>ro.fortsoft</groupId>
-    <artifactId>generic-data</artifactId>
+    <artifactId>generic-data-service</artifactId>
     <version>1.9.0</version>
 </dependency>
 ```
