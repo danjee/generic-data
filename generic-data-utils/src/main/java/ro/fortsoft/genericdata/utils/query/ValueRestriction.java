@@ -41,7 +41,7 @@ public class ValueRestriction implements Serializable {
 	}
 
 	public ValueRestriction(final String sql) {
-		comparator = QueryParameter.SQL;
+		this.comparator = QueryParameter.SQL;
 		this.sql = sql;
 	}
 
@@ -78,6 +78,7 @@ public class ValueRestriction implements Serializable {
 
 	public void setSql(final String sql) {
 		this.sql = sql;
+		this.comparator = QueryParameter.SQL;
 	}
 
 	public List<ValueRestriction> getOrRestrictions() {
@@ -89,6 +90,7 @@ public class ValueRestriction implements Serializable {
 
 	public void setOrRestrictions(final List<ValueRestriction> orRestrictions) {
 		this.orRestrictions = orRestrictions;
+		this.comparator = QueryParameter.OR_RESTRICTIONS;
 	}
 
 	public Boolean getIsNotRestriction() {
