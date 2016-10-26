@@ -41,8 +41,8 @@ public class ValueRestriction implements Serializable {
 	}
 
 	public ValueRestriction(final String sql) {
-		this.comparator = QueryParameter.SQL;
 		this.sql = sql;
+		this.comparator = QueryParameter.SQL;
 	}
 
 	public ValueRestriction() {
