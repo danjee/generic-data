@@ -3,5 +3,5 @@
 /.project
 /.classpath
 /.idea
-/.generic-data.iml
+/generic-data*.iml
 /pom.xml.versionsBackup
